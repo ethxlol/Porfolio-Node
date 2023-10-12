@@ -21,9 +21,25 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(__dirname + '/node_modules/bootstrap/dist'));
 app.use(express.static(__dirname + '/node_modules/jquery/dist/'));
 app.use(express.static(__dirname + '/node_modules/typed.js/lib'));
+app.use(express.static(__dirname + '/node_modules/bootstrap-icons'));
+
+// app.use('/', indexRouter);
+app.use('/users', usersRouter);
+var indexRouter = require('./routes/index');
+var homeRouter = require('./routes/home');
+var aboutRouter = require('./routes/about');
+var servicesRouter = require('./routes/services');
+var recommendationsRouter = require('./routes/recommendations');
+var portfolioRouter = require('./routes/portfolio');
+var contactRouter = require('./routes/contact');
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/home', homeRouter);
+app.use('/about', aboutRouter);
+app.use('/services', servicesRouter);
+app.use('/recommendations', recommendationsRouter);
+app.use('/portfolio', portfolioRouter);
+app.use('/contact', contactRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
