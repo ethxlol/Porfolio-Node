@@ -5,8 +5,7 @@
 		<link rel="stylesheet" href="../font/bootstrap-icons.css" />
 		<link rel="stylesheet" href="../css/bootstrap.min.css" />
 		<link href="../css/home/header.css" rel="stylesheet" />
-		<link href="../css/about/navbar.css" rel="stylesheet" />
-		<link href="../css/about/icons.css" rel="stylesheet" />
+		<link rel="stylesheet" href="../public/css/home/style.css" />
 	</head>
 	<body class="position-relative" data-bs-spy="scroll">
 		<%- include('./partials/navbar.ejs') %>
@@ -14,5 +13,21 @@
 			<%- include('./partials/portfolio.ejs') %>
 		</div>
 		<%- include('./partials/scripts.ejs') %>
+		<script>
+			function filterSelection(filter) {
+				const allItems = document.querySelectorAll('.grid .hide');
+				const filteredItems = document.querySelectorAll('.grid .' + filter);
+
+				// Hide all items first
+				allItems.forEach((item) => (item.style.display = 'none'));
+
+				// Display only the filtered items
+				if (filter === 'all') {
+					allItems.forEach((item) => (item.style.display = 'block'));
+				} else {
+					filteredItems.forEach((item) => (item.style.display = 'block'));
+				}
+			}
+		</script>
 	</body>
 </html>

@@ -6,6 +6,26 @@ var router = express.Router();
 const fs = require('fs');
 const path = require('path');
 
+// Delete request
+
+router.delete('/', jsonParser, (req, res, next) => {
+	let rawdata = fs.readFileSync(
+		path.resolve(__dirname, '../data/introductionArray.json')
+	);
+	let array = JSON.parse(rawdata);
+
+	const index = array.indexOf(req.body.textToRemove);
+	if (index !== -1) {
+		array.splice(index, 1);
+	}
+
+	fs.writeFileSync(
+		path.resolve(__dirname, '../data/introductionArray.json'),
+		JSON.stringify(array)
+	);
+	res.end();
+});
+
 router.post('/', jsonParser, function (req, res, next) {
 	let rawdata = fs.readFileSync(
 		path.resolve(__dirname, '../data/introductionArray.json')

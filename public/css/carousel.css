@@ -1,4 +1,5 @@
 .carousel-control-next,
 .carousel-control-prev {
-    filter: invert(100%);
+	color: black;
+	filter: invert(100%);
 }
