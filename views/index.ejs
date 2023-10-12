@@ -13,5 +13,19 @@
 			include('./partials/contact.ejs') %>
 		</div>
 		<%- include('./partials/scripts.ejs') %>
+		<script>
+			var typedStrings = <%- JSON.stringify(array) %>;
+		</script>
+		<script>
+			var typed = new Typed('.aboutMe', {
+				strings: typedStrings,
+				smartBackspace: true,
+				typeSpeed: 100,
+				backSpeed: 100,
+				loop: true,
+				loopCount: Infinity,
+				startDelay: 1000,
+			});
+		</script>
 	</body>
 </html>

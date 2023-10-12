@@ -1,39 +1,16 @@
-<section class="about" id="about">
-	<div class="container">
-		<div class="row">
-			<div class="col-lg-6">
-				<img
-					src="img/mainPhoto.jpeg"
-					class="img-fluid border-0 rounded-pill"
-					alt="Profile Picture" />
-			</div>
-			<div class="col-lg-6 mt-5 mt-lg-0">
-				<h2>About Me</h2>
-				<h3>
-					Hello!
-					<span style="color: #e96f85">I am John Doe - the cake master</span>
-				</h3>
-
-				<p>
-					I am baking the cakes with passion for five years. I have already
-					baked numerous fancy cakes for weddings and birthdays. Sometimes
-					clients ask me to bake a cake for a special event, such as company
-					anniversary as well!
-				</p>
-				<p>
-					In the 2021 I participate in Cake International contest and got the
-					Silver award badge. Although for me smile of satisfied client is way
-					more important than any possible award.
-				</p>
-				<p>
-					If you are interested in my work, you can check the greatest cakes I
-					baked on my social media:
-				</p>
-				<a href="#"><i class="bi bi-facebook"></i></a>
-				<a href="#"><i class="bi bi-instagram"></i></a>
-				<a href="#"><i class="bi bi-youtube"></i></a>
-				<a href="#"><i class="bi bi-twitter"></i></a>
-			</div>
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<link rel="stylesheet" href="../font/bootstrap-icons.css" />
+		<link rel="stylesheet" href="../css/bootstrap.min.css" />
+		<link href="../css/about/navbar.css" rel="stylesheet" />
+		<link href="../css/about/icons.css" rel="stylesheet" />
+	</head>
+	<body class="position-relative" data-bs-spy="scroll">
+		<%- include('./partials/navbar.ejs') %>
+		<div data-spy="scroll" data-target="#navbar" data-offset="0">
+			<%- include('./partials/about.ejs') %>
 		</div>
-	</div>
-</section>
+		<%- include('./partials/scripts.ejs') %>
+	</body>
+</html>
