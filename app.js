@@ -3,6 +3,10 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var loginRouter = require('./routes/login');
+var passport = require('passport');
+var session = require('express-session');
+var JsonStore = require('express-session-json')(session);
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -13,6 +17,7 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
+app.use('/login', loginRouter);
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -22,6 +27,18 @@ app.use(express.static(__dirname + '/node_modules/bootstrap/dist'));
 app.use(express.static(__dirname + '/node_modules/jquery/dist/'));
 app.use(express.static(__dirname + '/node_modules/typed.js/lib'));
 app.use(express.static(__dirname + '/node_modules/bootstrap-icons'));
+
+app.use(express.static(__dirname + '/node_modules/bootstrap-icons'));
+
+app.use(
+	session({
+		secret: 'keyboard cat',
+		resave: false,
+		saveUninitialized: false,
+		store: new JsonStore(),
+	})
+);
+app.use(passport.authenticate('session'));
 
 // app.use('/', indexRouter);
 app.use('/users', usersRouter);

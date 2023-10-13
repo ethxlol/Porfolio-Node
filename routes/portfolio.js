@@ -27,6 +27,41 @@ router.get('/', function (req, res, next) {
 });
 
 router.post('/', jsonParser, function (req, res, next) {
+	const expectedAttributed = [
+		'url',
+		'name',
+		'alt',
+		'category',
+		'header',
+		'description',
+	];
+
+	// Checking for unexpected attributes
+	Object.keys(req.body).forEach((param) => {
+		if (!expectedAttributed.includes(param)) {
+			return res.status(400).end('Wrong Attr');
+		} else {
+			if (req.body[param] == '') {
+				return res.status(400).end(param + ' must have a value');
+			}
+		}
+	});
+
+	// Checking for missing url or name
+	if (!req.body.url || !req.body.name) {
+		return res.status(400).end('Url/name not provided');
+	}
+
+	// Checking for invalid category
+	if (
+		req.body.category &&
+		!['wedding', 'christmas', 'birthday', 'anniversary'].includes(
+			req.body.category
+		)
+	) {
+		return res.status(400).end('Wrong category provided');
+	}
+
 	let rawdata = fs.readFileSync(
 		path.resolve(__dirname, '../data/portfolio.json')
 	);
